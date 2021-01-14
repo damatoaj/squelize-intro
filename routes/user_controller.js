@@ -19,7 +19,7 @@ ROUTER.get('/', (req, res) => {
 //new - get /users/new
 ROUTER.get('/new', (req, res) => {
     console.log('----------get /users/new--------')
-    res.send("form for new users");
+    res.render('users/new');
 })
 
 //create - post /users
