@@ -24,8 +24,20 @@ router.get('/new', (req, res) => {
 // Create — POST /users
 router.post('/', (req, res) => {
     console.log('🦕 ------- POST /users');
-    console.log(req.body);
-    res.send('NEW USER WHO DIS');
+    // Create a new user with the information from req.body
+    // db.user.create(req.body) 
+    db.user.create({
+        name: req.body.name,
+        age: Math.floor(req.body.age),
+        email: req.body.email
+    }).then(user => {
+        console.log(`User ${user.name} was created! 😎`);
+        // redirect to the index for all users
+        res.redirect('/users');
+    }).catch(err => {
+        console.log(err);
+        res.redirect('/users/new');
+    });
 });
 
 // Show/Details — GET /users/:id
