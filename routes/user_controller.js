@@ -25,8 +25,22 @@ ROUTER.get('/new', (req, res) => {
 //create - post /users
 ROUTER.post('/', (req, res) => {
     console.log('----------post /users--------')
-    console.log(req.body);
-    res.send("post the new users");
+    //create a new user with the information from req.body
+    DB.user.create({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        age: Math.floor(req.body.age),
+        email: req.body.email
+    }).then(user => {
+        console.log(`user ${user.name} was created!`)
+        //redirect to the index for all users
+        res.redirect('/users')
+    }).catch(err => {
+        console.log(err)
+        res.redirect('/users/new')
+    })
+
+    // DB.user.create(req.body) is an alternative if you want to use all data
 })
 
 //show/details - get users/:id
