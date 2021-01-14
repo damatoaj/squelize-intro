@@ -1,4 +1,7 @@
 <h1>Create a new user</h1>
-<form>
+<form method="POST" action="/users">
+    Name: <input type="text" name="name" required>
+    Age: <input type="number" name="age">
+    Email: <input type="email" name="email" required>
     <input type="submit">
 </form>
