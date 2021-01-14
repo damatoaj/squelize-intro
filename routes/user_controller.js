@@ -4,8 +4,15 @@ const db = require('../models');
 
 // Index — GET /users
 router.get('/', (req, res) => {
-    console.log('🏄‍♂️ ------- GET /users');
-    res.send('GET ALL THE USERS');
+    console.log('🏄‍ ------- GET /users');
+    // query my database for all users
+    db.user.findAll()
+    .then(users => {
+        res.send(users);
+    }).catch(err => {
+        console.log(err);
+        res.send('ERROR')
+    });
 });
 
 // New — GET /users/new
