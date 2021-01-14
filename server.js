@@ -19,9 +19,10 @@ APP.get('/', (req, res) => {
 });
 
 //Controllers go here
+APP.use('/users', require('./routes/user_controller'));
 
 APP.get('/*', (req, res) => {
     res.send("404");
 });
 
-APP.listen(process.env.PORT || 8000, () => console.log(`listening at Port: ${process.env.PORT || 8000}`));
+APP.listen(process.env.PORT || 9000, () => console.log(`listening at Port: ${process.env.PORT || 9000}`));

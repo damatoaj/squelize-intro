@@ -5,7 +5,15 @@ const DB = require('../models');
 //index -   get /usersd
 ROUTER.get('/', (req, res) => {
     console.log('----------get /users--------')
-    res.send("get all users");
+    //query my database for all users
+    DB.user.findAll()
+    .then(users => {
+        res.send(users);
+    }).catch(err => {
+        console.log(err);
+        res.send('ERROR')
+    })
+    
 })
 
 //new - get /users/new
